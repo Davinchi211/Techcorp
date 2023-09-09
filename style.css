@@ -1,0 +1,18 @@
+body,html{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    background-color: bisque;
+    padding: 1em;
+}
+#btnReg{
+    margin-top: 100px;
+}
+.container-md{
+    margin-top: 20px;
+}
+.table{
+    text-align: center;
+}
