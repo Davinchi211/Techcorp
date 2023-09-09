@@ -7,24 +7,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+    <link rel="icon" href="img/techo1.png" style="color: white;">
 </head>
-<body container-fluid>
-        <nav class="navbar bg-body-tertiary">
+<body class="container">
+        <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand">
-                <img src="" alt="LOGO" class="d-inline-block align-text-top">
+            <span class="navbar-brand mb-0 h1">
+                <img src="img/techo.png" alt="LOGO" class="d-inline-block align-text-top bg-light">
                 TechCORP
             </a>
         </div>
         </nav>
         <!--BANNER-->
     <div class="container">
-        <div class="container-xl">
-            <div class="card">
-                <h1>EMPLEADOS<img src="" alt="LOGO" class="d-inline-block align-text-top">
-</h1>
-            </div>
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <h1><img src="img/logo.png" alt="LOGO" width="50" height="50" class="d-inline-block align-text-top">
+                EMPLEADOS</h1>
         </div>
     <!-- BTN NUEVO -->
     <div class="container-md" id="btnReg">
