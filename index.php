@@ -1,3 +1,10 @@
+<?php
+    include('connect.php');
+    $con = connection();
+    $sl = "SELECT * FROM empleados";
+    $query = mysqli_query($con,$sl);
+    $num_rows = mysqli_num_rows($query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +15,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="icon" href="img/techo1.png" style="color: white;">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">    </script>
 </head>
 <body class="container">
         <nav class="navbar navbar-dark bg-dark fixed-top">
@@ -18,57 +26,106 @@
             </a>
         </div>
         </nav>
-        <!--BANNER-->
-    <div class="container">
-            <div class="card shadow p-3 mb-5 bg-body rounded">
+        <br>
+        <!--CONTAINER2-->
+    <div class="container-md">
+        <div class="card text-bg-secondary mb-3 border-0 rounded-3" >
                 <h1><img src="img/logo.png" alt="LOGO" width="50" height="50" class="d-inline-block align-text-top">
                 EMPLEADOS</h1>
         </div>
+            
     <!-- BTN NUEVO -->
-    <div class="container-md" id="btnReg">
+    <div class="container-md text-center" id="btnReg">
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalRegistro">
-            + NUEVO EMPLEADO </button>
+            <img src="img/duplicar.png" alt="AGREGAR" width="25" height="25" style="margin-right:10px">NUEVO EMPLEADO </button>
     </div>
-    <div class="container-lg">
+    <br>
+    <!--MODAL -->
+    <div class="modal fade" id="ModalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="ModalRegistro">BIENVENIDO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--FORM FORM INSERT-->
+        <div class="container-md">
+        <img src="img/empleado.png" alt="employee" class="mx-auto d-block">
         <br>
-            <form action="" method="POST">
-                <table class="table" align="center">
-                    <tbody>
+            <form action="insertar.php" method="POST">
+                <table class="table table-striped-columns" align="center">
                         <thead>
-                            <th colspan="2"><h6>BIENVENIDO</h6></th>
+                            <th colspan="2"><h6>INSERT EMPLOYEE</h6></th>
                         </thead>
+                        <tbody>
                         <tr>
                             <td><label for="" class="form-label">NOMBRE</label></td>
-                            <td><input type="text" class="form-control" placeholder="NAME"></td>
+                            <td><input type="text" name="nombre" class="form-control" placeholder="NAME"></td>
                         </tr>
                         <tr>
                             <td><label for="" class="form-label">CARGO</label></td>
-                            <td><input type="text" class="form-control" placeholder="CARGO"></td>
+                            <td><input type="text" name="cargo" class="form-control" placeholder="CARGO"></td>
                         </tr>
                         <tr>
                             <td><label for="" class="form-label">SALARIO</label></td>
-                            <td><input type="number" class="form-control" placeholder="0000"></td>
+                            <td>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Q</span>
+                                 <input type="text" class="form-control" name="salario">
+                                 <span class="input-group-text">.00</span>
+                            </div>
+                            </td>                            
                         </tr>
                         <tr>
                             <td><label for="" class="form-label">FECHA</label></td>
-                            <td><input type="date" class="form-control"></td>
+                            <td><input type="date" name="fecha_cont" class="form-control"></td>
                         </tr>
                     </tbody>
                 </table>
-            </form>
     </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-success" value="Save Changes"></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <br>
     <!-- SHOW REGISTERS -->
     <div class="container-md">
-        <table class="table">
+        <table class="table table-dark table-striped table-hover" width="200px">
             <thead>
                 <th scope="col">ID</th>
                 <th scope="col">NOMBRE</th>
                 <th scope="col">CARGO</th>
                 <th scope="col">SALARIO</th>
                 <th scope="col">FECHA CONTRATACIÓN</th>
+                <th scope="col" colspan="3">OPERACIÓN</th>
             </thead>
+            <tbody>
+                <?php
+                    while($row= mysqli_fetch_array($query)):?>
+                    <tr>
+                        <td><?=$row['id'];?></td>
+                        <td><?=$row['nombre'];?></td>
+                        <td><?=$row['cargo'];?></td>
+                        <td><?=$row['salario'];?></td>
+                        <td><?=$row['fecha_cont'];?></td>
+                        <td><a href="" class="btn btn-outline-primary" role="button">UPDATE</a></td>
+                        <td><a href="" class="btn btn-outline-danger" role="button">DELETE</a></td>
+                        <td></td>
+                    </tr>
+                <?php endwhile;?>
+                <tr>
+                <td colspan="8" align="center"><b><i><?php echo "USUARIOS REGISTRADOS: ".$num_rows.""?></b></i></td>
+                </tr>
+            </tbody>
         </table>
     </div>    
+    <br>
     </div>
-</body>
+    </body>
 </html>
