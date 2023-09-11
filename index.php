@@ -34,13 +34,13 @@
                 EMPLEADOS</h1>
         </div>
             
-    <!-- BTN NUEVO -->
+    <!-- BTN NEW REGISTER-->
     <div class="container-md text-center" id="btnReg">
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalRegistro">
             <img src="img/duplicar.png" alt="AGREGAR" width="25" height="25" style="margin-right:10px">NUEVO EMPLEADO </button>
     </div>
     <br>
-    <!--MODAL -->
+    <!--MODAL FOR REGISTER EMPLOYEE-->
     <div class="modal fade" id="ModalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -49,7 +49,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!--FORM FORM INSERT-->
+        <!--FORM FOR INSERT EMPLOYEE-->
         <div class="container-md">
         <img src="img/empleado.png" alt="employee" class="mx-auto d-block">
         <br>
@@ -95,7 +95,7 @@
 </div>
     <br>
     <!-- SHOW REGISTERS -->
-    <div class="container-md">
+    <div class="table-wrapper-scroll-y scrollm">
         <table class="table table-dark table-striped table-hover" width="200px">
             <thead>
                 <th scope="col">ID</th>
@@ -106,26 +106,35 @@
                 <th scope="col" colspan="3">OPERACIÓN</th>
             </thead>
             <tbody>
+               <script>
+                    function Delete(){
+                        alert('EMPLEADO ELIMINADO');
+                    }
+                </script>
                 <?php
-                    while($row= mysqli_fetch_array($query)):?>
+                    while($row= mysqli_fetch_array($query)):
+                    ?>
                     <tr>
                         <td><?=$row['id'];?></td>
                         <td><?=$row['nombre'];?></td>
                         <td><?=$row['cargo'];?></td>
                         <td><?=$row['salario'];?></td>
                         <td><?=$row['fecha_cont'];?></td>
-                        <td><a href="" class="btn btn-outline-primary" role="button">UPDATE</a></td>
-                        <td><a href="" class="btn btn-outline-danger" role="button">DELETE</a></td>
-                        <td></td>
+                        <td><a href="#edit_<?php echo $row['id'];?>" class="btn btn-outline-primary" data-toggle="modal" data-target="#edit">UPDATE</a></td>
+                        <td><a href="delete.php?id=<?=$row['id'];?>" class="btn btn-outline-danger" role="button" onclick="Delete()">DELETE</a></td>
                     </tr>
-                <?php endwhile;?>
+                    <?php endwhile?>
                 <tr>
                 <td colspan="8" align="center"><b><i><?php echo "USUARIOS REGISTRADOS: ".$num_rows.""?></b></i></td>
                 </tr>
+                <?php //include('update.php');?>
+                
             </tbody>
         </table>
+
     </div>    
     <br>
+    
     </div>
     </body>
 </html>

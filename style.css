@@ -2,7 +2,7 @@ body,html{
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: rgb(114, 164, 207);
+    background-color: rgb(29, 59, 85);
 }
 .container-md{
     border-radius: 20px;
@@ -16,4 +16,15 @@ body,html{
 .card{
     display: flex;
     align-items: center;
+}
+.container{
+    margin-top: 100px;
+}
+.scrollm{
+    height: 300px;
+    position: relative;
+    overflow: auto;
+}
+.table-wrapper-scroll-y{
+    display: block;
 }
