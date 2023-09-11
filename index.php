@@ -128,7 +128,6 @@
                 <td colspan="8" align="center"><b><i><?php echo "USUARIOS REGISTRADOS: ".$num_rows.""?></b></i></td>
                 </tr>
                 <?php //include('update.php');?>
-                
             </tbody>
         </table>
 
