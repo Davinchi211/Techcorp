@@ -2,10 +2,10 @@
     session_start();
     include('connect.php');
 
-    if(isset($_POST['update'])){
+    if(isset($_POST['updatedata'])){
     $con = connection();
     
-    $id = $_GET['id'];
+    $id = $_POST['id'];
     $nombre = $_POST['nombre'];
     $cargo = $_POST['cargo'];
     $salario = $_POST['salario'];

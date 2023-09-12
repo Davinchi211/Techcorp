@@ -93,6 +93,66 @@
     </div>
   </div>
 </div>
+
+
+<!--MODAL 2 UPDATE-->
+<div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="ModalUpdate">BIENVENIDo</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--FORM FOR UPDATE EMPLOYEE-->
+        <div class="container-md">
+        <img src="img/empleado.png" alt="employee" class="mx-auto d-block">
+        <br>
+            <form action="update_user.php" method="POST">
+                <table class="table table-striped-columns" align="center">
+                        <thead>
+                            <th colspan="2"><h6>UPDATE EMPLOYEE</h6></th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><label for="" class="form-label">ID</label></td>
+                                <td><input type="text" name="id" class="form-control" readonly></td>
+                            </tr>
+                        <tr>
+                            <td><label for="" class="form-label">NOMBRE</label></td>
+                            <td><input type="text" name="nombre" class="form-control">></td>
+                        </tr>
+                        <tr>
+                            <td><label for="" class="form-label">CARGO</label></td>
+                            <td><input type="text" name="cargo" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="" class="form-label">SALARIO</label></td>
+                            <td>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Q</span>
+                                 <input type="text" class="form-control">
+                                 <span class="input-group-text">.00</span>
+                            </div>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td><label for="" class="form-label">FECHA</label></td>
+                            <td><input type="date" name="fecha_cont" class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-success" name="updatedata" data-bs-toggle="modal" data-bs-target="#editModal">UPDATE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
     <br>
     <!-- SHOW REGISTERS -->
     <div class="table-wrapper-scroll-y scrollm">
@@ -120,17 +180,38 @@
                         <td><?=$row['cargo'];?></td>
                         <td><?=$row['salario'];?></td>
                         <td><?=$row['fecha_cont'];?></td>
-                        <td><a href="#edit_<?php echo $row['id'];?>" class="btn btn-outline-primary" data-toggle="modal" data-target="#edit">UPDATE</a></td>
+                        <td><button type="button" class="btn btn-outline-primary editbtn">UPDATE</button></td>
                         <td><a href="delete.php?id=<?=$row['id'];?>" class="btn btn-outline-danger" role="button" onclick="Delete()">DELETE</a></td>
                     </tr>
                     <?php endwhile?>
                 <tr>
                 <td colspan="8" align="center"><b><i><?php echo "USUARIOS REGISTRADOS: ".$num_rows.""?></b></i></td>
                 </tr>
-                <?php //include('update.php');?>
+                <script>
+            $(document).ready(function () {
+
+            $('.editbtn').on('click', function () {
+
+                $('#editmodal').modal('show');
+
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#id').val(data[0]);
+                $('#nombre').val(data[1]);
+                $('#cargo').val(data[2]);
+                $('#salario').val(data[3]);
+                $('#fecha_cont').val(data[4]);
+            });
+        });
+    </script>
             </tbody>
         </table>
-
     </div>    
     <br>
     
